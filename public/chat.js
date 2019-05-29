@@ -21,14 +21,29 @@ socket.on('newMessage', function (message) {
     document.querySelector('body').appendChild(li);
 });
 
-let messageForm = document.querySelector('#message-form');
+// Message Form
+
+let messageForm = document.querySelector('#messageForm');
+let messageInput = document.querySelector('input[name="message"]');
+
 messageForm.addEventListener('submit', function (e) {
     e.preventDefault();
-    socket.emit('createMessage', {
-        from: 'User',
-        text:
-            document.querySelector('input[name="message"]').value
-    }, function () {
+    
+    //Input validation
+    if (messageInput.value == '') {
+        //alert("Message required");
+        messageInput.classList.add("messageInput__placeholder");
+        messageInput.setAttribute("placeholder", "You must write something!!!")
+    } else {
+        messageInput.setAttribute("placeholder", "Enter message here.....")
+        messageInput.classList.remove("messageInput__placeholder")
 
-    })
+        // Socket emit
+        socket.emit('createMessage', {
+            from: 'User',
+            text:
+                messageInput.value
+        });
+    }
+    messageInput.value = '';
 })
