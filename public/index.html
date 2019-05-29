@@ -4,19 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Chat app using node, socket, express</title>
+    <title>Join | Chat App</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome to chat app</h1>
- 
-    <div class="messageList" style="overflow-y: scroll; height:500px;"></div>
-    <form type="submit" id="messageForm">
-        <input type="text" name="message" placeholder="Enter message here....." id="messageInput">
+    <h1>Join Chat</h1>
+    <form action="/chat.html">
+        <input type="text" placeholder="Enter username"><br>
+        <input type="text" placeholder="Enter room"><br>
+        <button>Join</button>
     </form>
-
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="chat.js"></script>
-    <script src="/libs/moment.js"></script>
 </body>
 </html>
