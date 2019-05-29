@@ -9,9 +9,10 @@
 </head>
 <body>
     <h1>Welcome to chat app</h1>
-
+ 
+    <div class="messageList" style="overflow-y: scroll; height:500px;"></div>
     <form type="submit" id="messageForm">
-        <input type="text" name="message" placeholder="message" id="messageInput">
+        <input type="text" name="message" placeholder="Enter message here....." id="messageInput">
     </form>
 
     <script src="/socket.io/socket.io.js"></script>

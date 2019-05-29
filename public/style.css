@@ -4,3 +4,9 @@ h1{
 .messageInput__placeholder::placeholder{
     color: red;
 }
+
+#messageInput{
+    position: absolute;
+    bottom: 15px;
+}
+

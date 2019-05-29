@@ -18,7 +18,7 @@ socket.on('newMessage', function (message) {
     //Webpage: Created li and append content to body
     let li = document.createElement('li');
     li.innerText = `${message.from} ${formattedTime}: ${message.text}`;
-    document.querySelector('body').appendChild(li);
+    document.querySelector('.messageList').appendChild(li);
 });
 
 // Message Form
@@ -28,7 +28,7 @@ let messageInput = document.querySelector('input[name="message"]');
 
 messageForm.addEventListener('submit', function (e) {
     e.preventDefault();
-    
+
     //Input validation
     if (messageInput.value == '') {
         //alert("Message required");
@@ -45,5 +45,5 @@ messageForm.addEventListener('submit', function (e) {
                 messageInput.value
         });
     }
-    messageInput.value = '';
+    messageInput.value = ''; //Clear input values after submission
 })
