@@ -1,3 +1,5 @@
+//import moment from 'moment';
+
 let socket = io();
 // Connect
 socket.on('connect', function () {
@@ -12,9 +14,10 @@ socket.on('disconnect', function () {
 socket.on('newMessage', function (message) {
     console.log('newMessage', message);
 
+    const formattedTime = moment(message.createdAt).format('LT');
     //Webpage: Created li and append content to body
     let li = document.createElement('li');
-    li.innerText = `${message.from}: ${message.text}`;
+    li.innerText = `${message.from} ${formattedTime}: ${message.text}`;
     document.querySelector('body').appendChild(li);
 });
 
