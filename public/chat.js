@@ -4,7 +4,18 @@ let socket = io();
 // Connect
 socket.on('connect', function () {
     console.log('connected to server');
+    //Display name and room name using regex 
+    /* let params = window.location.search.substring(1)
+    decodeURI(params).replace(/&/g, '","').replace(/\+/g, ' ').replace(/=/g, '":"')
+    "name":"Trupti","room":"node" */
+
+    let searchQuery = window.location.search.substring(1); //substring(1) removies '?'. e.g. 'search: "?name=Trupti&room=node"'
+    let params = JSON.parse('{"' + decodeURI(searchQuery).replace(/&/g, '","').replace(/\+/g, ' ').replace(/=/g, '":"') + '"}');
+    socket.emit('join', params, function () {
+        window.location.href = '/'; // after connection go to '/'
+    })
 });
+
 //Disconnect
 socket.on('disconnect', function () {
     console.log('disconnected from server');
@@ -15,7 +26,7 @@ socket.on('newMessage', function (message) {
     console.log('newMessage', message);
 
     const formattedTime = moment(message.createdAt).format('LT');
-    //Webpage: Created li and append content to body
+    //Webpage: Created li and append content
     let li = document.createElement('li');
     li.innerText = `${message.from} ${formattedTime}: ${message.text}`;
     document.querySelector('.messageList').appendChild(li);

@@ -11,12 +11,12 @@ let server = http.createServer(app);
 
 app.use(express.static(publicPath));
 
-server.listen(port, function(){
+server.listen(port, function () {
     console.log(`Server is running on port ${port}`);
 });
 
 let io = socketIO(server); // get access to socket library http://localhost:3000/socket.io/socket.io.js
-io.on('connection', function(socket){
+io.on('connection', function (socket) {
     console.log("New user CONNECTED");
 
     // Admin message to everyone at the start
@@ -34,7 +34,7 @@ io.on('connection', function(socket){
     });
 
     //Client side create message and send to server
-    socket.on('createMessage', function(message){
+    socket.on('createMessage', function (message) {
         console.log('createMessage', message);
         io.emit('newMessage', {
             from: message.from,
@@ -43,7 +43,7 @@ io.on('connection', function(socket){
         })
     });
 
-    socket.on('disconnect', function(){
+    socket.on('disconnect', function () {
         console.log('User DISCONNECTED')
     });
 });
